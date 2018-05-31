@@ -1,0 +1,33 @@
+/*
+Theme Name: TNA-Theme
+Author: Ryan Willpower
+Author URI: https://github.com/Ryan-Willpower
+Description: A theme for TNA-Agri Group
+Version: 1A
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: tnatheme
+*/
+
+html {
+    background-color: #41C136;
+}
+
+.lang-bar {
+    height: 44px;
+    background-color: #EDF7F7;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #000000 !important;
+}
+
+.navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .active>.nav-link {
+    color: #1D9704 !important;
+}
+
+footer {
+    background-color: #1E73BE;
+    color: #FFFFFF;
+    height: 80px;
+}
