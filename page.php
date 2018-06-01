@@ -3,10 +3,10 @@
     global $post;
     $slug = $post->post_name;
 
-    if ( $slug != 'about-us' || $slug != 'contact-us') {
+    if ( preg_match( '/crop/', $slug ) ) {
         while ( have_posts() ) {
             the_post();
-            get_template_part( 'template-parts/page/content', str_replace('-th', '', $slug) );
+            get_template_part( 'template-parts/page/content', 'product'  );
         }
     } else {
         while ( have_posts() ) {
