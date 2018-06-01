@@ -5,6 +5,7 @@ function wp_add_script() {
     wp_enqueue_script('jquery3', 'https://code.jquery.com/jquery-3.3.1.slim.min.js', null, null, true);
     wp_enqueue_script('popper', 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js', array('jquery3'), null, true);
     wp_enqueue_script('bootstrap_4_js', 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js', array('jquery3', 'popper'), null, true);
+    wp_enqueue_script('dropdown', get_template_directory_uri() . '/dropdown.js', null, null, true);
 }
 add_action('wp_enqueue_scripts', 'wp_add_script');
 
