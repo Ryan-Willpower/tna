@@ -3,7 +3,7 @@ get_header();
 while ( have_posts() ) :
     the_post();
  ?>
-<div class="container homepage">
+<div class="container homepage my-5">
 	<div class="row">
 		<div class="col-lg-8">
 			<section>
