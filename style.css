@@ -31,3 +31,10 @@ footer {
     color: #FFFFFF;
     height: 80px;
 }
+h4 {
+    color: #1E73BE !important;
+}
+
+strong {
+    color: #FF6600 !important;
+}
