@@ -4,15 +4,12 @@
     $slug = $post->post_name;
 
     if ( preg_match( '/crop/', $slug ) ) {
-        while ( have_posts() ) {
-            the_post();
-            get_template_part( 'template-parts/page/content', 'product'  );
-        }
+        call('product');
+    } else if ( preg_match( '/nutri/', $slug ) ) {
+        call_without_loops('nutri');
     } else {
-        while ( have_posts() ) {
-            the_post();
-            get_template_part( 'template-parts/page/content' , '');
-        }
+        call();
     }
+    
     get_footer();
 ?>

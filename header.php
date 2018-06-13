@@ -2,19 +2,25 @@
 <html <?php language_attributes(); ?>>
     <head>
         <meta charset="<?php bloginfo( 'charset' ); ?>" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <title><?php wp_title(); ?></title>
+        <?php if ( !is_welcome() ) : ?>
         <link href="<?php echo get_stylesheet_uri(); ?>" rel="stylesheet">
-        <link rel="profile" href="http://gmpg.org/xfn/11" />
-        <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
-        <?php if ( is_singular() && get_option( 'thread_comments' ) ) wp_enqueue_script( 'comment-reply' ); ?>
+        <?php endif; ?>
         <?php wp_head(); ?>
     </head>
     <body>
+    <?php if ( !is_welcome() && !is_404() ) : ?>
         <!-- Language bar : .lang-bar-->
         <div class="w-100 lang-bar">
             <div class="container h-100 d-flex justify-content-end align-items-center">
-                <a class="mr-3" href="#">thai</a>
-                <a href="#">eng</a>
+                <?php
+                    wp_nav_menu( array(
+                        'theme_location'        => 'lang-change',
+                        'container'             => '',
+                        'menu_class'            => 'nav'
+                    ));
+                ?>
             </div>
         </div>
         <!-- main menus -->
@@ -22,7 +28,8 @@
             <div class="container">
                 <!-- logo -->
                 <a class="navbar-brand" href="<?php echo home_url() ?>">
-                    <img src="<?php echo get_attachment_url_by_title('tna-logo'); ?>">
+                    <img class="normal" src="<?php echo get_attachment_url_by_title('tna-logo'); ?>">
+                    <img class="mobile" src="<?php  echo get_attachment_url_by_title('tna-logo-mobile');  ?>">
                 </a>
                 <!-- button that appears when screen is less than ipad size -->
                 <button class="btn btn-sm navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,8 +51,10 @@
                 ?>
             </div>
         </nav>
+        <!-- do a slide shortcode if not 404 page -->
         <?php 
-            if (! is_404() ) {
-                echo do_shortcode('[rlslider id=30]');
+            if (!is_welcome() && ! is_404() ) {
+                echo do_shortcode('[rlslider id=35]');
             }
         ?>
+        <?php endif; ?>

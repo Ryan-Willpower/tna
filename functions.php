@@ -5,7 +5,10 @@ function wp_add_script() {
     wp_enqueue_script('jquery3', 'https://code.jquery.com/jquery-3.3.1.slim.min.js', null, null, true);
     wp_enqueue_script('popper', 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js', array('jquery3'), null, true);
     wp_enqueue_script('bootstrap_4_js', 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js', array('jquery3', 'popper'), null, true);
-    wp_enqueue_script('dropdown', get_template_directory_uri() . '/dropdown.js', null, null, true);
+    if ( is_welcome() && !is_404() ) {
+        wp_enqueue_style('welcome', get_template_directory_uri(). '/welcome_css.php', null, null);
+    }
+    // wp_enqueue_script('dropdown', get_template_directory_uri() . '/dropdown.js', null, null, true);
 }
 add_action('wp_enqueue_scripts', 'wp_add_script');
 
@@ -19,15 +22,11 @@ add_action('wp_enqueue_scripts', 'wp_add_script');
     }
 
 // register main menu
-function register_my_menu() {
-    register_nav_menu( 'main-menu', __( 'Main Menu' ) );
-}
-add_action( 'init', 'register_my_menu' );
-
 function register_my_menus() {
     register_nav_menus(
       array(
         'main-menu' => __( 'main-menu' ),
+        'lang-change' => __( 'lang-change' )
       )
     );
 }
@@ -54,6 +53,62 @@ function include_fa() {
 }
 add_action('wp_enqueue_scripts','include_fa');
 
+// Enable support for Post Thumbnails on posts and pages.
+add_theme_support( 'post-thumbnails', array( 'post' ) );
+
+// Replaces the excerpt "Read More" text by a link
+function new_excerpt_more($more) {
+    global $post;
+    return '<a class="post-link" href="'. get_permalink($post->ID) . '"> ...Read the full article</a>';
+}
+add_filter('excerpt_more', 'new_excerpt_more');
+
+// call a content
+function call($slug = '') {
+    while ( have_posts() ) {
+        the_post();
+        get_template_part( 'template-parts/page/content', $slug );
+    }
+}
+
+// call without loops
+function call_without_loops($slug = '') {
+    get_template_part( 'template-parts/page/content', $slug );
+}
+
+// register sidebar
+function tna_widgets_init() {
+    register_sidebar( array(
+        'name' => __( 'sidebar', 'tnaagrigroup' ),
+        'id' => 'sidebar',
+        'description' => __( 'Widgets in this area will be shown on all page.', 'tnaagrigroup' ),
+        'before_title'  => '<h4 class="widget-title">',
+        'after_title'   => '</h4>',
+    ) );
+}
+add_action( 'widgets_init', 'tna_widgets_init' );
+
+// fix pagination to not fall into 404
+function my_post_count_queries( $query ) {
+    if (!is_admin() && $query->is_main_query()){
+      if(is_home()){
+         $query->set('posts_per_page', 1);
+      }
+    }
+  }
+add_action( 'pre_get_posts', 'my_post_count_queries' );
+
+// check what value logo have to use
+function site_value() {
+    $url = bloginfo('url');
+    if ( stripos( $url, 'th' ) !== false ) {
+        return $url . '/th/';
+    } else {
+        return $url;
+    }
+}
+
+// check what button value could use
 function button_value() {
     global $wp;
     $current_url = home_url(add_query_arg(array(),$wp->request));
@@ -63,6 +118,8 @@ function button_value() {
         echo('Read more');
     }
 }
+
+// check what path should use
 function news_link() {
     global $wp;
     $current_url = home_url(add_query_arg(array(),$wp->request));
@@ -73,6 +130,8 @@ function news_link() {
     }
     the_permalink($page);
 }
+
+// check what category should use
 function static_cat_name() {
     global $wp;
     $current_url = home_url(add_query_arg(array(),$wp->request));
@@ -80,6 +139,27 @@ function static_cat_name() {
         return 'posts-th';
     } else {
         return 'posts';
+    }
+}
+
+// this too
+function cat_name($post_cat) {
+    global $wp;
+    $current_url = home_url(add_query_arg(array(),$wp->request));
+    if (stripos($current_url, 'th') !== false) {
+        return $post_cat .= '-th';
+    } else {
+        return $post_cat;
+    }
+}
+
+// check welcome slug
+function is_welcome() {
+    global $post;
+    $slug = $post->post_name;
+
+    if ( preg_match( '/welcome/', $slug ) ) {
+        return true;
     }
 }
 ?>

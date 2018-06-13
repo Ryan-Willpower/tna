@@ -9,13 +9,40 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: tnatheme
 */
 
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+/* 1. universal css */
 html {
     background-color: #41C136;
+    font-family: 'Roboto', sans-serif;
 }
 
+h3, h4 {
+    color: #1E73BE !important;
+}
+
+strong {
+    color: #FF6600;
+}
+
+.lang-bar ul li a, .image-link, .post-link {
+    text-decoration: none !important;
+}
+/* end */
+
+/* 2. menu */
 .lang-bar {
     height: 44px;
     background-color: #EDF7F7;
+}
+
+.lang-bar ul li a {
+    margin-left: 20px;
+    color: #000000;
+}
+
+.lang-bar ul li a:hover {
+    color: #1D9704;
 }
 
 .navbar-light .navbar-nav .nav-link {
@@ -26,15 +53,125 @@ html {
     color: #1D9704 !important;
 }
 
+.navbar-nav .dropdown-menu {
+    width: 180px;
+    height: 88px;
+}
+/* end */
+
+/* 3. footer */
 footer {
     background-color: #1E73BE;
     color: #FFFFFF;
     height: 80px;
 }
-h4 {
-    color: #1E73BE !important;
+/* end */
+
+/* 4. home news */
+.title {
+    color: #1D9704;
 }
 
-strong {
-    color: #FF6600 !important;
+.title:hover {
+    color: #14A75D;
+}
+
+.category-title > p {
+    color: #1D9704;
+}
+
+.category-title > p:hover {
+    color: #14A75D;
+}
+/* end */
+
+/* 5. content-nutri */
+.cat-icon i {
+    color: #F48D27;
+}
+
+.nutri .jumbotron {
+    padding: 20px 30px;
+}
+
+.nutri h4 {
+    color: #769AB9;
+}
+
+.nutri h5 {
+    color: #1D9704;
+}
+
+.nutri .wpb_content_element  strong:last-child {
+    color: #99CC00;
+}
+
+.nutri div p strong {
+    color: #000000;
+}
+
+/* media query section */
+
+/* mobile size logo */
+@media screen and (max-width: 425px) {
+    .nav {
+        margin-right: 16px;
+    }
+    .normal {
+        display: none;
+    }
+
+    nav {
+        text-align: center;
+    }
+
+    .navbar-brand {
+        margin-right: 0;
+    }
+
+    .logo {
+        width: 100%;
+        margin: auto;
+    }
+
+    nav button {
+        margin: 6px auto;
+    }
+
+    nav .primary .nav-item {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .dropdown-menu {
+        text-align: center;
+        width: 100%;
+    }
+}
+
+/* desktop size logo */
+@media screen and (min-width: 426px), screen and (max-width: 991) {
+    .mobile {
+        display: none;
+    }
+
+    nav {
+        text-align: center;
+    }
+
+    .dropdown-menu {
+        text-align: left;
+        padding-left: 5px;
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 992) {
+    .mobile {
+        display: none;
+    }
+
+    .dropdown-menu {
+        padding: 10px 20px 10px 15px;
+    }
 }

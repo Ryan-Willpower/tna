@@ -1,3 +1,4 @@
+        <?php if ( !is_welcome() && !is_404() ) : ?>
         <footer>
             <div class="container d-lg-flex justify-content-between h-100 align-items-center">
                 <div class="copyright text-center">
@@ -8,6 +9,7 @@
                 </div>
             </div>
         </footer>
+        <?php endif ?>
         <?php wp_footer(); ?>
     </body>
 <html>
