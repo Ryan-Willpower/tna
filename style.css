@@ -115,6 +115,10 @@ footer {
     text-decoration: none;
 }
 
+.dropdown-menu {
+    margin: 0 auto !important;
+}
+
 /* media query section */
 
 /* mobile size logo */
