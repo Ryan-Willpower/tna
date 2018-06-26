@@ -11,13 +11,13 @@
             $args = array( 'posts_per_page' => 4, 'category_name' => $cat_name,'paged' => $paged, 'post_type' => 'post' );
             $postslist = new WP_Query( $args );
             if ( $postslist->have_posts() ) :
-                while ( $postslist->have_posts() ) : $postslist->the_post(); 
+                while ( $postslist->have_posts() ) : $postslist->the_post();
         ?>
             <div class="posts my-4">
                 <div class="row">
                     <div class="col-sm-12">
                         <a class="post-link" href="<?php the_permalink(); ?>">
-                            <?php the_title('<h5 class="title">', '</h5>'); ?>
+                            <?php the_title('<h5 class="news-title">', '</h5>'); ?>
                         </a>
                     </div>
                     <div class="w-100"></div>
