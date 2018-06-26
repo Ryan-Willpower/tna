@@ -177,4 +177,17 @@ function filter_ptags_on_images($content) {
 }
 add_filter('acf_the_content', 'filter_ptags_on_images');
 add_filter('the_content', 'filter_ptags_on_images');
+
+// Title
+function title() {
+    if (is_front_page() && ! is_home()) {
+        echo (bloginfo('name'));
+        echo " | ";
+        echo (bloginfo('description'));
+    } else {
+        echo (wp_title(''));
+        echo (" | ");
+        echo (bloginfo('name'));
+    }
+}
 ?>
