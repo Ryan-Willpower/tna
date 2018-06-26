@@ -158,6 +158,11 @@ img.aligncenter { display: block; margin-left: auto; margin-right: auto; }
 .alignleft { float: left; }
 .aligncenter { display: block; margin-left: auto; margin-right: auto; }
 
+/* remove bullet from sidebar */
+
+li.widget ul,
+li.widget li { list-style: none; }
+
 /* desktop size logo */
 @media screen and (min-width: 426px), screen and (max-width: 991) {
     .mobile {
