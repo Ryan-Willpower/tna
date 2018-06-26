@@ -49,7 +49,7 @@ function get_attachment_url_by_title( $title ) {
 
 // add font-awesome
 function include_fa() {
-	wp_enqueue_script('font-awesome', 'https://use.fontawesome.com/95396b5442.js'); 
+	wp_enqueue_script('font-awesome', 'https://use.fontawesome.com/95396b5442.js');
 }
 add_action('wp_enqueue_scripts','include_fa');
 
@@ -162,4 +162,19 @@ function is_welcome() {
         return true;
     }
 }
+
+// modify a "more" text
+function modify_read_more_link() {
+    $post_slug = get_post_field( 'post_name', get_post() );
+    return '<a href="/'. $post_slug .'" class="btn btn-info btn-sm mb-3">Detail</a>';
+}
+add_filter( 'the_content_more_link', 'modify_read_more_link' );
+
+// remove p from a
+function filter_ptags_on_images($content) {
+    $content = preg_replace('/<p>\s*(<a .*>)?\s*(<img .* \/>)\s*(<\/a>)?\s*<\/p>/iU', '\1\2\3', $content);
+    return preg_replace('/<p>\s*(<iframe .*>*.<\/iframe>)\s*<\/p>/iU', '\1', $content);
+}
+add_filter('acf_the_content', 'filter_ptags_on_images');
+add_filter('the_content', 'filter_ptags_on_images');
 ?>
