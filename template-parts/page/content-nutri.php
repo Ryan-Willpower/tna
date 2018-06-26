@@ -37,11 +37,13 @@
             $postslist = get_posts( $args2 );
             foreach ( $postslist as $post ) :
             setup_postdata( $post );
+            $post_slug = get_post_field( 'post_name', get_post() );
         ?>
         <div class="col-md-6 nutri">
-            <?php the_title('<h5 class="mb-3"><span class="cat-icon mr-3"><i class="fa fa-arrow-circle-o-right fa-lg" aria-hidden="true"></i></span>', '</h5>'); ?>
-            <?php the_content()?>
-            <?php $post_slug = get_post_field( 'post_name', get_post() ); ?>
+            <div class="d-flex flex-column text-center">
+                <a href="/<?php echo $post_slug; ?>"><?php the_post_thumbnail([300, 300], null); ?></a>
+                <?php the_title('<a class="nutri-link" href="/'.$post_slug.'"><h5 class="mb-3 my-5"><span class="cat-icon mr-3"><i class="fa fa-arrow-circle-o-right fa-lg" aria-hidden="true"></i></span>', '</h5></a>'); ?>
+            </div>
         </div>
         <?php
             endforeach;

@@ -110,6 +110,11 @@ footer {
     color: #000000;
 }
 
+.nutri-link:hover {
+    color: #14A75D;
+    text-decoration: none;
+}
+
 /* media query section */
 
 /* mobile size logo */
