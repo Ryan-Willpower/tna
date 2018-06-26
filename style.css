@@ -119,6 +119,12 @@ footer {
     margin: 0 auto !important;
 }
 
+/* sidebar */
+
+.widget-title {
+	   padding-bottom: 1em;
+}
+
 /* media query section */
 
 /* mobile size logo */
@@ -169,8 +175,9 @@ img.aligncenter { display: block; margin-left: auto; margin-right: auto; }
 
 /* remove bullet from sidebar */
 
-li.widget ul,
-li.widget li { list-style: none; }
+.widget, .posts-in-sidebar {
+	   list-style-type: none;
+}
 
 /* desktop size logo */
 @media screen and (min-width: 426px), screen and (max-width: 991) {
@@ -196,5 +203,13 @@ li.widget li { list-style: none; }
 
     .dropdown-menu {
         padding: 10px 20px 10px 15px;
+    }
+}
+
+
+/* make jumbotron purrfect */
+@media (min-width: 576px) {
+    .jumbotron {
+        padding: 2rem 2rem !important;
     }
 }
