@@ -3,7 +3,7 @@
     <head>
         <meta charset="<?php bloginfo( 'charset' ); ?>" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        <title><?php wp_title(); ?></title>
+        <title><?php title(); ?></title>
         <?php if ( !is_welcome() ) : ?>
         <link href="<?php echo get_stylesheet_uri(); ?>" rel="stylesheet">
         <?php endif; ?>
@@ -52,7 +52,7 @@
             </div>
         </nav>
         <!-- do a slide shortcode if not 404 page -->
-        <?php 
+        <?php
             if (!is_welcome() && ! is_404() ) {
                 echo do_shortcode('[rlslider id=35]');
             }
